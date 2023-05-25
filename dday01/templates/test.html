@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+
+{% block wood %}
+    <div>
+    <div class="container">
+        <h4>这是测试请求</h4>
+        <input type="button"  value="测试" onclick="wood();" />
+    </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script >
+    function wood(){
+        console.log("hello world")
+    $.ajax(
+        {
+            url:'{% url "admin_ajax" %}',
+            type: 'get',
+            data:{
+                n1:123,
+                n2:123,
+            },
+            success:function (res){
+
+                console.log(res.message)
+            }
+        }
+    )
+    }
+</script>
+{% endblock %}

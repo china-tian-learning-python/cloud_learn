@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block wood %}
+        <div style="margin-bottom: 10px">
+
+            <a class="btn btn-success" href="#">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </a>
+
+        <div style="float:right; width:300px">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="填空题" name="search" value="{{ search_data }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+                </form>
+        </div>
+
+        </div>
+        <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+          填空题</div>
+{#        <div class="panel-heading">#}
+{#          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>#}
+{#          管理员列表</div>#}
+      <!-- Table -->
+{#      <table class="table table-bordered">#}
+    {% for li in three_data %}
+
+		<p><strong>{{ li.title }}</strong></p>
+{#        <ul class="list-group">#}
+{#  <li class="list-group-item list-group-item-success">{{ li.A }}</li>#}
+{#  <li class="list-group-item list-group-item-info">{{ li.B }}</li>#}
+{#  <li class="list-group-item list-group-item-warning">{{ li.C }}</li>#}
+{#  <li class="list-group-item list-group-item-danger">{{ li.D }}</li>#}
+{#</ul>#}
+        <p> 答案 ：<li class="list-group-item list-group-item-info">{{ li.an }}</li> </p>
+{% endfor %}
+
+
+</div>
+{% endblock %}

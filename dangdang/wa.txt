@@ -1,0 +1,26 @@
+import requests
+from lxml import etree
+headers={
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
+}
+
+
+def imgs(urls):
+    response = requests.get(urls, headers=headers)
+    try:
+        with open(f'imgs/{urls.split("/")[-1].replace(".jpg", "")}.jpg', 'wb') as f:
+            f.write(response.content)
+        print("成功")
+    except:
+        print("失败")
+
+for i in range(1,28):
+    url=f"https://www.4kbizhi.com/meinv/index_{i}.html"
+
+    wood=requests.get(url=url,headers=headers)
+    all=etree.HTML(wood.text)
+    all_img=all.xpath("//div[@class='col']/ul/li")
+
+    for li in all_img:
+        urls="https://www.4kbizhi.com"+li.xpath("./a/img/@src")[0]
+        imgs(urls)

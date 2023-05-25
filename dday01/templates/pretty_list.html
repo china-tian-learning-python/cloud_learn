@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block wood %}
+
+        <div>
+    <div class="container">
+
+        <div style="margin-bottom: 10px">
+
+            <a class="btn btn-success" href="{% url 'pretty_add' %}">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                新建靓号</a>
+
+        <div style="float:right; width:300px">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." name="search" value="{{ search_data }}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Go!</button>
+                    </span>
+                </div>
+                </form>
+        </div>
+
+        </div>
+        <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+          <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+          靓号列表</div>
+
+      <!-- Table -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>手机号</th>
+              <th>价格</th>
+              <th>靓号等级</th>
+              <th>是否使用</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for li in pretty_list %}
+                <tr>
+                    <td>{{ li.id }}</td>
+
+                    <td>{{ li.mobile}}</td>
+                    <td>{{ li.price }}</td>
+                    <td>{{li.get_level_display}}</td>
+                    <td>{{ li.status }}</td>
+
+                    <td>
+                        <a class="btn btn-primary btn-xs" href="{% url 'pretty_put' li.id %}">编辑</a>
+                        <a class="btn btn-danger btn-xs" href="{% url 'pretty_delete' li.id %}">删除</a>
+                    </td>
+                </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <ul class="pagination">
+      {{ str_li_list }}
+              <li>
+
+            <form method="get" style="float: right;margin-left: -1px">
+
+                    <input type="text" style="position: relative;float: left;display: inline-block;width: 88px;border-radius: 0;" class="form-control" placeholder="Search for..." name="page">
+
+                        <button class="btn btn-default" style="border-radius: 0" type="submit">Go!</button>
+
+
+                </form>
+
+              </li>
+  </ul>
+    </div>
+
+</div>
+
+{% endblock %}
